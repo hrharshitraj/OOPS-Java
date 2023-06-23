@@ -1,0 +1,39 @@
+// Classes and Objects-
+class Car {
+    String engine;
+    long price;
+    int seats;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car Maruti = new Car();    // Creating the object of the user-defined class
+        
+        // By default values-
+        System.out.println(Maruti);   // Some random value -> Car@378bf509
+        System.out.println(Maruti.engine);  // null
+        System.out.println(Maruti.price);   // 0
+        System.out.println(Maruti.seats);   // 0
+        
+        Maruti.engine = "Petrol Engine";   // Accesing object's instance variables using '.' operator (Separator);
+        Maruti.price = 353000;
+        Maruti.seats = 4;
+        
+        // After accessing instance variables-
+        System.out.println(Maruti.engine);  // Petrol Engine
+        System.out.println(Maruti.price);   // 353000
+        System.out.println(Maruti.seats);   // 4
+        
+        Car Ferrari = new Car();
+        Ferrari.engine = "Twin Turbocharged";
+        Ferrari.price = 35000000;
+        Ferrari.seats = 4;
+        
+        Car Audi = new Car();
+        Audi.engine = "TFSI Engine";
+        Audi.price = 8990000;
+        Audi.seats = 7;
+        
+        System.out.println(Audi.engine);
+    }
+}
