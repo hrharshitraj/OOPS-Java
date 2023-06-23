@@ -1,0 +1,51 @@
+// Constructors in Java-
+/* this keyword-
+When lhs's name(Properties of class) and rhs's name(Parameters passed in Constructor) is same, you must use this.name = name;   this.engine = engine;
+
+If both are not same, simply write properties = parameters passed in constructor;
+engine = str;
+
+this.engine = str, this will also work;
+Only condition is if engine = engine you are writing, to not confuse both these properties and parameters, this keyword is used;
+*/
+class Car {
+    String engine;
+    long price;
+    int seats;
+    
+    /* Parameterised Constructors-
+    Car(String str, long p, int s) {
+        engine = str;
+        price = p;
+        seats = s;
+    }
+    */
+    
+    Car(String engine, long price, int seats) {
+        // this keyword is a reference variable that refers to the current object or current objects instance;
+        this.engine = engine;
+        this.price = price;
+        this.seats = seats;
+    }
+    
+    /* By default Constructors created by Java itself-
+    Car() { // No arguments;
+        // by default values are given to instance variables;
+    }
+    */
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car Ferrari = new Car("Twin Turbocharged",35000000,4);  // Initializing an object, giving values to instance variables using constructors;
+        System.out.println(Ferrari.engine);  // Twin Turbocharged
+        System.out.println(Ferrari.price);   // 35000000
+        System.out.println(Ferrari.seats);   // 4
+        // No need of-
+        // Ferrari.engine = "Twin Turbocharged";
+        // Ferrari.price = 35000000;
+        // Ferrari.seats = 4;
+        
+        // Car Ferrari = new Car(); -> When we did not give values to instance variables earlier, when we didn't create any constructor in class Car, then Java itself created a default constructor for us and while printing, gave all the default values of different instance variables;
+    }
+}
