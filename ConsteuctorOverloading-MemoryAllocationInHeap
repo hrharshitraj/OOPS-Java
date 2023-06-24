@@ -1,0 +1,37 @@
+// Constructor Overloading in Java-
+class Car {
+    String engine;
+    long price;
+    int seats;
+    
+    Car() {
+        // this is how you call a constructor from another constructor;
+        this("Inline four",638000,7);
+    }
+    
+    Car(String engine, long price, int seats) {
+        this.engine = engine;
+        this.price = price;
+        this.seats = seats;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car Ferrari = new Car();
+        System.out.println(Ferrari.engine);
+        System.out.println(Ferrari.price);
+        System.out.println(Ferrari.seats);
+        
+// Memory allocation in Heap-
+        Car example = Ferrari;
+        System.out.println(example.engine);
+        System.out.println(example.price);
+        System.out.println(example.seats);
+        
+        // Engine of Ferrari has been changed, but since both Ferrari and example are pointing to the same object in heap, value of engine has changed in both Ferrari as well as example;
+        Ferrari.engine = "GTS";
+        System.out.println(Ferrari.engine);
+        System.out.println(example.engine);
+    }
+}
