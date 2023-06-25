@@ -1,0 +1,77 @@
+/* Wrapper Class in Java-
+public class Main {
+    // Primitive data types only pass by its value;
+//     private static void swap(int a, int b) {    // Pass by value;
+//         int temp = a;
+//         a = b;
+//         b = temp;
+        
+//         System.out.println(a + " " + b);    // 20 10 -> Changed in this function only, originally its same;
+//     }
+    
+    // Now, object is passed, Passed by reference, still value not swapped, WHY?
+    private static void swap(Integer a, Integer b) {    // Pass by value;
+        Integer temp = a;
+        a = b;
+        b = temp;
+        
+        System.out.println(a + " " + b);    // 50 25 -> Changed in this function only, originally its same;
+    }
+    
+    public static void main(String[] args) {
+        // int a = 10;   // 'a' is a variable;
+        // int b = 20;
+        // swap(a,b);
+        // System.out.println(a + " " + b);    // 10 20 -> Not changed;
+        
+        Integer a = 25;   // a is an object;
+        Integer b = 50;
+        swap(a,b);
+        System.out.println(a + " " + b);     // 25 50 -> Still not changed;
+    }
+}
+*/
+
+// final keyword-
+public class Main {
+    // final is immutable only for primitive data types, not for objects;
+    static class A {
+        int num;
+        // final int number;   // error: variable number not initialized in the default constructor
+        
+        A(int num) {
+            this.num = num;
+        }
+
+        /*
+        The finalize( ) Method:
+Sometimes an object will need to perform some action when it is destroyed.
+To handle such situations, Java provides a mechanism called finalization. By using finalization,
+you can define specific actions that will occur when an object is just about to be reclaimed by the garbage collector.
+To add a finalizer to a class, you simply define the finalize( ) method. The Java run time calls that method whenever
+it is about to recycle an object of that class. Right before an asset is freed, the Java run time calls the finalize( )
+method on the object.
+
+protected void finalize( ) {
+    // finalization code here
+}
+        */
+        // Whenever any object of class A will be freeed(destroyed), this will be called;
+        protected void finalize() throws Throwable {
+            System.out.println("Object is destroyed");
+        }
+    }
+    
+    public static void main(String[] args) {
+        final int bonus = 2;
+        // bonus = 3;    // error: cannot assign a value to final variable bonus;
+        System.out.println(bonus);
+        
+        // What if an object is final in Java?
+// If we use the final keyword with an object, it means that the reference cannot be changed, but its state (instance variables) can be changed.
+        final A student = new A(5);
+        student.num = 3; // You can change and give the values;
+        System.out.println(student.num);    // 3
+        // student = new A(6);   // reference can't be changed, error: cannot assign a value to final variable student
+    }
+}
