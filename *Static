@@ -1,0 +1,62 @@
+// ALL ABOUT STATIC KEYWORD, STATIC METHODS/ATTRIBUTES, EVERYTHING:
+/*
+Why do we need to use static in 'public static void main(String[] args)' {
+    * If you hadn't used static here, you would not be even able to enter into this main method as you needed to have an object first before accessing any method/attribute of a class;
+    * static helps to let the java know that dude, this is the method you have to go to directly once the program runs, No need to have any object because you can't have any object before you enter into main method and there you create objects;
+}
+*/
+import java.util.*;
+class Human {
+    int age;
+    String name;
+    boolean isMarried;
+    // long population;
+    static long population;
+    
+    Human(int age,String name,boolean isMarried) {
+        this.age = age;
+        this.name = name;
+        this.isMarried = isMarried;
+        // this.population += 1;     // O/P: 1
+        // As population doesn't depend on object of human class, we need not to always pass objects as this.population, so just pass (className)Human.population;
+        Human.population += 1;   // O/P:3(Number of objects in human class)
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {  
+        /*
+        Human harshit = new Human(20,"Harshit",false);
+        Human gopal = new Human(32,"Gopal",true);
+        Human data = new Human(23,"Akshay",false);
+        
+        System.out.println(harshit.age);
+        // It'll Work;
+        System.out.println(harshit.population);
+        // Try to use like this, conventional-
+        System.out.println(Human.population);
+        */
+        fun();
+
+        Main obj = new Main();
+        obj.fun2();
+    }
+    
+    static void fun() {
+        // greetings();   // error: non-static method greetings() cannot be referenced from a static context
+        // You can't access a non-static member without explicitly mentioning an 'object reference' to it;
+        Main obj = new Main();
+        obj.greetings();   // Good Morning!
+    }
+
+    void fun2() {
+        greetings();     // Here, as fun2 is also non-static, no need to create an object because eventually greetings will have an object 
+                          as fun2 is also non-static and at last every non-static method needs to be called from static method(main) 
+                          where you need to create an object that would be for fun2 in this case, 
+                          when fun2 will be called, that same object will be assigned to greetings(), so no need of creating an object here;
+    }
+    
+    void greetings() {
+        System.out.println("Good Morning!");
+    }
+}
