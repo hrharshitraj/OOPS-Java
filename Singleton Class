@@ -1,0 +1,74 @@
+// Singleton Class-
+import java.util.*;
+class Singleton {
+    int age;
+    String name;
+    boolean isMarried;
+    
+    // private can only be accessed inside the class;
+    private Singleton(int age, String name, boolean isMarried) {
+        this.age = age;
+        this.name = name;
+        this.isMarried = isMarried;
+    }
+    
+    private static Singleton instance;    // No object is yet created, by default instance is null;
+    
+    public static Singleton getInstance() {
+        // Here, Singleton constructor can be accessed;
+        if(instance==null) {    // Once an object is created, if you try to create another object, it'll directly return(point) to the already created instance object;
+            instance = new Singleton(20,"Harshit",false);
+        }
+        return instance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        /*
+        // You can't allow constructor calls as you aim to restrict object creations;
+        Singleton harshit = new Singleton(20,"Harshit",false);    // error: Singleton(int,String,boolean) has private access in Singleton
+        Singleton gopal = new Singleton(19,"Gopal",false);
+        System.out.println(harshit.name);
+        */
+        
+        // One object is created-
+        Singleton obj1 = Singleton.getInstance();
+        // Singleton obj1 = new Singleton(20,"Gopal",true);   // error: Singleton(int,String,boolean) has private access in Singleton
+        System.out.println(obj1.age);    // 20
+        // obj1.age = 30;   // It can be Manipulated;
+        System.out.println(obj1.name);   // Harshit
+        System.out.println(obj1.isMarried);   // false
+        
+        // If you try to create more objects, it'll be referencing to the same object as instance is no more a null not, so no object creations anymore;
+        Singleton obj2 = Singleton.getInstance();
+        obj2.age = 27;    // Can be manipulated through any instance;
+        System.out.println(obj1.age);    // 27
+        System.out.println(obj2.age);    // 27
+        System.out.println(obj2.name);   // Harshit
+        System.out.println(obj2.isMarried);   // false
+    }
+}
+
+// In a singleton class, when we first-time call the getInstance() method,
+it creates an object of the class with the name single_instance and returns it to the variable. Since single_instance is static, it is changed from null to some object. 
+Next time, if we try to call the getInstance() method since single_instance is not null, it is returned to the variable, instead of instantiating the Singleton class again.
+
+/*
+In object-oriented programming, a java singleton class is a class that can have only one object (an instance of the class) at a time.
+After the first time, if we try to instantiate the Java Singleton classes, the new variable also points to the first instance created.
+So whatever modifications we do to any variable inside the class through any instance, 
+affects the variable of the single instance created and is visible if we access that variable through any variable of that class type defined.
+
+* Make a constructor private.
+* Write a static method that has the return type object of this singleton class. 
+
+` Difference between Normal Class and Singleton Class-
+1. To instantiate a normal class, we use a java constructor. On the other hand, to instantiate a singleton class, we use the getInstance() method.
+2. The other difference is that a normal class vanishes at the end of the lifecycle of the application while the singleton class does not destroy with the completion of an application.
+
+** getInstance()
+The getInstance() method of java.security.Provider class is used to return a Signature object that implements the specified signature algorithm.
+Parameters: This method takes the standard name of Algorithm as a parameter.
+Return Value: This method returns the new Signature object.
+*/
