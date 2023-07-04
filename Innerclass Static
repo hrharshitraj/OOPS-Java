@@ -1,0 +1,21 @@
+import java.util.*;
+// public static class Main {   // modifier static not allowed here
+public class Main {
+  static class Innerclass {     // Harshit;
+    // Innerclass doesn't depend on the objects of outerclass(Main) if its static;
+    // class Innerclass {
+        String name;
+        
+        Innerclass(String name) {
+            this.name = name;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Innerclass harshit = new Innerclass("Harshit");   // non-static variable this cannot be referenced from a static context
+        Innerclass gopal = new Innerclass("Gopal");
+        
+        System.out.println(harshit.name);
+        System.out.println(gopal.name);
+    }
+}
