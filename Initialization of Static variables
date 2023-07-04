@@ -1,0 +1,22 @@
+import java.util.*;
+class Staticblock {
+    static int a = 4;
+    static int b;       // Default value = 0;
+    
+    // Runs only once when the first object is created, when the class is loaded for the first time;
+    static {
+        System.out.println("Inside static block");
+        b = a*5;
+    }
+    
+    public static void main(String[] args) {
+        Staticblock obj = new Staticblock();    // Inside static block
+        System.out.println(Staticblock.a + " " + Staticblock.b);   // 4 20
+        
+        Staticblock.b += 3;   // b = 20+3;
+        System.out.println(Staticblock.a + " " + Staticblock.b);    // 4 23
+        
+        Staticblock obj2 = new Staticblock();   // Goes into Static only once;
+        System.out.println(Staticblock.a + " " + Staticblock.b);    // 4 23
+    }
+}
