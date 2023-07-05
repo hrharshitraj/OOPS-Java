@@ -1,0 +1,94 @@
+import java.util.*;
+class Box {
+    double length;
+    double breadth;
+    double width;
+    
+    Box() {
+        this.length = -1;
+        this.breadth = -1;
+        this.width = -1;
+    }
+    
+    Box(double value) {
+        this.length = value;
+        this.breadth = value;
+        this.width = value;
+    }
+    
+    Box(double length, double breadth, double width) {
+        this.length = length;
+        this.breadth = breadth;
+        this.width = width;
+    }
+    
+    // Copy Constructor-
+    Box(Box old) {
+        this.length = old.length;
+        this.breadth = old.breadth;
+        this.width = old.width;
+    }
+}
+
+class BoxWeight extends Box {     // Inheriting properties and methods of base class 'Box';
+    double weight;
+    
+    BoxWeight() {
+        this.weight = -1;
+    }
+    
+    BoxWeight(double length, double breadth, double width, double weight) {
+        // where to get values of l,b and w -> From the Base class;
+        super(length,breadth,width);   // It simply asks to call the parent class(Box) constructor to assign values to length,breadth and width;
+        this.weight = weight;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        /*
+        Box obj1 = new Box();
+        System.out.println(obj1.length);   // -1.0
+        Box cube = new Box(5);
+        System.out.println(cube.length + " " + cube.breadth + " " + cube.width);  // 5.0 5.0 5.0
+        Box diff = new Box(4,3,5);
+        System.out.println(diff.length + " " + diff.breadth + " " + diff.width);  // 4.0 3.0 5.0
+        Box copy = new Box(diff);
+        System.out.println(copy.length + " " + copy.breadth + " " + copy.width);   // 4.0 3.0 5.0
+        */
+        /*
+        BoxWeight box1 = new BoxWeight();
+        System.out.println(box1.length + " " + box1.breadth + " " + box1.width + " " + box1.weight);    // -1.0 -1.0 -1.0 -1.0
+        
+        // What if you want to give values to l,b and w of Box-
+        BoxWeight box1 = new BoxWeight(4.9,9.2,7.8,6.3);     // error: constructor BoxWeight in class BoxWeight cannot be applied to given types -> Create a constructor and using super(), get the values of l,b and w from Box;
+        System.out.println(box1.length + " " + box1.breadth + " " + box1.width + " " + box1.weight);    // 4.9 9.2 7.8 6.3
+        */
+        
+        /*
+        * A Superclass Variable can Reference a Subclass Object:
+It is important to understand that it is the type of the reference variable—not the type of the object that it refers
+to—that determines what members can be accessed.
+When a reference to a subclass object is assigned to a superclass reference variable, you will have access only to
+those parts of the object defined by the superclass.
+        */
+        Box box1 = new BoxWeight(4.9,9.2,7.8,6.3);
+//  Box -> Superclass reference variable ,  BoxWeight -> Subclass Object;
+        System.out.println(box1.length + " " + box1.breadth + " " + box1.width);   // 4.9 9.2 7.8
+        // System.out.println(box1.weight);    // error: cannot find symbol
+        
+        /*
+        * A Subclass Variable can not Reference a Superclass Object:
+        subclass reference variable , superclass object(l,b,w);
+BoxWeight box6 = new Box(2,5,8);
+
+* There are many variables in both Parent and Child class;
+* You are always given access to the Variables that are reference type, i.e, BoxWeight;
+* Hence, ideally you should allowed to access weight variable;
+* But here, object is Superclass(Box), when the object itself of parent type, you will pass only the parents constructor parameter,
+* How would weight in this case be initialized and how would BoxWeight constructor be called, that's why It shows an error when you pass subclass(child) as reference variable and superclass(parent) as object;
+        
+        BoxWeight box1 = new Box(4.9,9.2,7.8);    // error: incompatible types: Box cannot be converted to BoxWeight
+        */
+    }
+}
